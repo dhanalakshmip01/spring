@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>EmployeeService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">springmvcproject</a> &gt; <a href="index.source.html" class="el_package">com.spring.springmvcproject.service</a> &gt; <span class="el_source">EmployeeService.java</span></div><h1>EmployeeService.java</h1><pre class="source lang-java linenums">package com.spring.springmvcproject.service;
+
+import java.util.List;
+import java.util.concurrent.CompletableFuture;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.spring.springmvcproject.Dao.EmployeeDao;
+import com.spring.springmvcproject.exception.CustomException;
+import com.spring.springmvcproject.modal.Employee;
+
+
+
+@Service
+<span class="fc" id="L17">public class EmployeeService {</span>
+
+	@Autowired
+	EmployeeDao employeeDao;	
+	
+	
+	public List&lt;Employee&gt; getEmployees(){
+<span class="nc" id="L24">		return employeeDao.getEmployees();</span>
+	}
+
+
+	public void saveEmployeeData(Employee empdatalist) {
+<span class="nc" id="L29">		employeeDao.saveEmployeeData(empdatalist);</span>
+		
+<span class="nc" id="L31">	}</span>
+		public List&lt;Employee&gt; getAllEmployees() {		
+<span class="nc" id="L33">		return employeeDao.getAllEmployees();</span>
+	}
+		public Employee saveEmployee(Employee emp) {			
+<span class="nc" id="L36">			return employeeDao.saveEmployee(emp);</span>
+		}
+
+		public Employee updateEmployee(int id, Employee emp) throws CustomException {			
+<span class="nc" id="L40">			return employeeDao.updateEmployee(id,emp);</span>
+		}
+
+		public String deleteEmployee(int id) throws CustomException {			
+<span class="nc" id="L44">			return employeeDao.deleteEmployee(id);</span>
+		}
+		
+		public CompletableFuture&lt;List&lt;Employee&gt;&gt; saveEmployeesData(MultipartFile file) throws CustomException{
+<span class="nc" id="L48">		return employeeDao.saveEmployeesData(file);</span>
+		}
+
+
+		public List&lt;Employee&gt; getPincode(String pincode) throws CustomException {
+<span class="nc" id="L53">			return employeeDao.getpincode(pincode);</span>
+		}
+
+
+		public List&lt;Employee&gt; getEmpByCity(String city) throws CustomException {			
+<span class="nc" id="L58">			return employeeDao.getEmpByCity(city);</span>
+		}
+
+
+		
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

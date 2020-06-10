@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Employee.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">springmvcproject</a> &gt; <a href="index.source.html" class="el_package">com.spring.springmvcproject.modal</a> &gt; <span class="el_source">Employee.java</span></div><h1>Employee.java</h1><pre class="source lang-java linenums">package com.spring.springmvcproject.modal;
+
+
+
+
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
+
+
+@Entity
+@Table(name=&quot;employee&quot;)
+@JsonIgnoreProperties({&quot;hibernateLazyInitializer&quot;,&quot;handler&quot;})
+<span class="pc bpc" id="L30" title="3 of 6 branches missed.">@RequiredArgsConstructor</span>
+<span class="fc" id="L31">@NoArgsConstructor</span>
+<span class="pc bpc" id="L32" title="41 of 44 branches missed.">@Data</span>
+public class Employee {
+
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@NonNull
+<span class="nc" id="L39">	private Integer emp_id;</span>
+	@Column(name=&quot;emp_first_name&quot;)
+	@NonNull
+<span class="fc" id="L42">	private String emp_first_name;</span>
+	@Column(name=&quot;emp_last_name&quot;)
+	@NonNull
+<span class="fc" id="L45">	private String emp_last_name;</span>
+	@OneToMany(mappedBy = &quot;employee&quot;)
+	@JsonIgnore
+<span class="nc" id="L48">	  private List&lt;Address&gt; address;	 </span>
+	
+	
+	
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>EmployeeController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">springmvcproject</a> &gt; <a href="index.source.html" class="el_package">com.spring.springmvcproject.controller</a> &gt; <span class="el_source">EmployeeController.java</span></div><h1>EmployeeController.java</h1><pre class="source lang-java linenums">package com.spring.springmvcproject.controller;
+
+
+import java.util.Arrays;
+import java.util.List;
+
+
+
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.spring.springmvcproject.exception.CustomException;
+import com.spring.springmvcproject.modal.Employee;
+import com.spring.springmvcproject.service.EmployeeService;
+
+
+
+@RestController
+<span class="fc" id="L31">public class EmployeeController {</span>
+
+	@Autowired
+	EmployeeService employeeService;
+	
+	  @GetMapping(value= &quot;/employee&quot; )
+	  public List&lt;Employee&gt; getEmployees() {
+<span class="fc" id="L38">		  List&lt;Employee&gt;  empdata=employeeService.getEmployees();</span>
+<span class="fc" id="L39">	  return empdata;</span>
+	  }
+	  
+	  
+	  @GetMapping(value=&quot;/employeesdata&quot;)
+		public List&lt;Employee&gt; getAllEmployees() {	
+<span class="fc" id="L45">			return employeeService.getAllEmployees();		</span>
+		}
+	  
+	  @PostMapping(value=&quot;/saveemp&quot;)
+	  public Employee saveEmployee(@RequestBody Employee emp) {
+<span class="fc" id="L50">		  return  employeeService.saveEmployee(emp);</span>
+	  }
+	  
+	  @PutMapping(value =&quot;/employee/{id}&quot;)	  
+	  public Employee updateEmployee(@PathVariable int id,@RequestBody Employee emp) throws CustomException {
+<span class="fc" id="L55">		return employeeService.updateEmployee(id,emp);</span>
+		  
+	  }
+	  
+	  @DeleteMapping(value=&quot;/employee/{id}&quot;)
+	  public String deleteEmployee(@PathVariable int id) throws CustomException {
+<span class="fc" id="L61">		  return employeeService.deleteEmployee(id);</span>
+	  }
+	  
+	  @GetMapping(&quot;/employeedata/{pincode}&quot;)
+	    public List&lt;Employee&gt; getEmployeeDataByPincode(@PathVariable(&quot;pincode&quot;) final String pincode) throws CustomException {
+<span class="fc" id="L66">	        return employeeService.getPincode(pincode);</span>
+	  }
+	  
+	  @GetMapping(&quot;/employee/{city}&quot;)
+	    public List&lt;Employee&gt; getEmpByCity(@PathVariable  String city) throws CustomException {
+<span class="fc" id="L71">	        return employeeService.getEmpByCity(city);</span>
+	  }
+	  
+	 @SuppressWarnings(&quot;rawtypes&quot;)
+	@PostMapping(value=&quot;/saveemployeedata&quot;,consumes = {MediaType.MULTIPART_FORM_DATA_VALUE},produces= &quot;application/json&quot;)
+	  public ResponseEntity saveEmployeesData(@RequestParam(value =&quot;files&quot;) MultipartFile files) throws CustomException{
+<span class="fc" id="L77">		  Arrays.asList(files).parallelStream().forEach(file-&gt;{</span>
+			
+				try {
+<span class="fc" id="L80">					employeeService.saveEmployeesData(file);</span>
+<span class="pc" id="L81">				} catch (CustomException e) {</span>
+<span class="nc" id="L82">					e.printStackTrace();</span>
+				}
+				
+<span class="fc" id="L85">		  }); </span>
+		 	 
+<span class="fc" id="L87">		  return  ResponseEntity.status(HttpStatus.CREATED).build();</span>
+			
+	  }
+	  
+	  
+	  
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
